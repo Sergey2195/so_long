@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:32:09 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/06 17:34:05 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:36:12 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void	check_extension(char *str, t_info *info)
 
 void	check_args_init_map(int argc, char **argv, t_info **info)
 {
-	int		fd;
 	int		i;
-	char	**map;
 
 	i = 0;
 	if (argc < 2)
@@ -39,5 +37,7 @@ void	check_args_init_map(int argc, char **argv, t_info **info)
 	if (argc > 2)
 		error_exit("Too many arguments", *info);
 	check_extension(argv[1], *info);
-	map_init(*info, argv[1]);	
+	map_init(*info, argv[1]);
+	(*info)->count_collect = 0;
+	(*info)->steps = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:22:29 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/07 15:01:45 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/09 19:55:36 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,23 @@ void	render_tile(t_tile tile, t_info info, t_vector pos)
 {
 	mlx_put_image_to_window(info.mlx_p, info.window_p, info.back, pos.x, pos.y);
 	if (tile.symbol == '1')
-		mlx_put_image_to_window(info.mlx_p, info.window_p, info.wall_image.ptr_image, pos.x, pos.y);
+		mlx_put_image_to_window(info.mlx_p,
+			info.window_p, info.wall, pos.x, pos.y);
 	if (tile.symbol == 'P')
-		mlx_put_image_to_window(info.mlx_p, info.window_p, info.player.idle_img_0, pos.x, pos.y);
+		mlx_put_image_to_window(info.mlx_p, info.window_p,
+			info.player.player_img, pos.x, pos.y);
 	if (tile.symbol == 'E')
-	 	mlx_put_image_to_window(info.mlx_p, info.window_p, info.exit_door.ptr_image, pos.x, pos.y);
+	{
+		if (info.number_of_collect == info.count_collect)
+			mlx_put_image_to_window(info.mlx_p, info.window_p,
+				info.exit_door.door_open, pos.x, pos.y);
+		else
+			mlx_put_image_to_window(info.mlx_p, info.window_p,
+				info.exit_door.door_close, pos.x, pos.y);
+	}
 	if (tile.symbol == 'C')
-		mlx_put_image_to_window(info.mlx_p, info.window_p, info.collectible, pos.x, pos.y);
+		mlx_put_image_to_window(info.mlx_p, info.window_p,
+			info.collectible, pos.x, pos.y);
 }
 
 void	render(t_info **info_p)
@@ -37,7 +47,6 @@ void	render(t_info **info_p)
 	tilemap = info->tile_array;
 	mlx_clear_window(info->mlx_p, info->window_p);
 	y = 0;
-	// printf("%d %d\n", info->map_height, info->map_width);
 	while (y <= info->map_height)
 	{
 		x = 0;

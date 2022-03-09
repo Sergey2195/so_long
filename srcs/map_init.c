@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 16:02:59 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/06 12:51:10 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:15:25 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**write_map(t_info *info, char *str)
 			break ;
 		}
 		if (c_line(map[i]) != info->map_width)
-			error_exit("The map must be a rectangle\n", info);
+			not_rect(info, i, &map);
 		i++;
 	}
 	close(fd);
@@ -77,7 +77,6 @@ int	line_count_f(t_info *info, char *arg)
 
 void	map_init(t_info *info, char *arg)
 {
-	int		fd;
 	int		line_count;
 	char	**map;
 
@@ -87,6 +86,6 @@ void	map_init(t_info *info, char *arg)
 	info->map_height = line_count;
 	map = write_map(info, arg);
 	info->map = map;
-	check_map(info); //dodelat
+	check_map(&info);
 	info->tile_array = init_tile_array(info);
 }

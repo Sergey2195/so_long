@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:09:25 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/03 15:12:20 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:28:42 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	finish(t_info *info)
 {
-	////////ochistit vse
+	success(&info);
 	exit(0);
 }

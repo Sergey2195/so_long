@@ -12,7 +12,7 @@ NAME =		so_long
 
 CC			= gcc 
 RM			= rm -f
-FLAGS		= -I.
+FLAGS		= -I. 
 LINKS 		= -lmlx -framework OpenGL -framework AppKit
 
 $(NAME):		$(OBJS)
