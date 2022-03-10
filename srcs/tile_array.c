@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 12:20:09 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/10 16:15:09 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:58:39 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ void	analysis_tile(t_tile *tile, t_info **info_p)
 
 	info = *info_p;
 	if (tile->symbol == 'P')
-	{
 		info->player.tile = tile;
-	}
 }
 
 t_tile	**init_tile_array(t_info **info)

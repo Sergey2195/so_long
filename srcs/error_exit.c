@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:47:57 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/10 17:03:21 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/10 19:26:18 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	error_signal(t_info *info, int i)
 		ft_putstr_fd("No map\n", 1);
 	if (i == 4)
 		ft_putstr_fd("Too many args\n", 1);
+	if (i == 5)
+		ft_putstr_fd("Invalid map(null)\n", 1);
 	free(info);
 	exit(EXIT_FAILURE);
 }

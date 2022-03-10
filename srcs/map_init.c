@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 16:02:59 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/10 16:33:03 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/10 19:26:53 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**write_map(t_info **info, char *str)
 	{
 		map[i] = get_next_line(fd);
 		if (map[i] == NULL)
-			error_exit("Invalid map!!\n", *info);
+			error_signal(*info, 5);
 		i++;
 	}
 	close(fd);
@@ -52,7 +52,7 @@ int	line_count_f(t_info **info, char *arg)
 		if (r == 0)
 			break ;
 		if (r == -1)
-			error_exit("Reading error\n", *info);
+			error_signal(*info, 1);
 		if (buff == '\n')
 			count++;
 	}
