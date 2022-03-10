@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 12:20:09 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/09 20:13:01 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:15:09 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ t_tile	**malloc_tile_array(t_info *info)
 	int		i;
 
 	tile_arr = NULL;
-	tile_arr = (t_tile **)malloc(sizeof(t_tile *) * (info->map_height));
+	tile_arr = (t_tile **)malloc(sizeof(t_tile *) * (info->map_height) + 1);
 	if (!tile_arr)
 		error_exit("Malloc error\n", info);
 	i = 0;
-	while (i <= info->map_height)
+	while (i < info->map_height)
 	{
-		tile_arr[i] = (t_tile *)malloc(sizeof(t_tile) * info->map_width);
+		tile_arr[i] = (t_tile *)malloc(sizeof(t_tile) * info->map_width + 1);
 		i++;
 	}
 	return (tile_arr);
@@ -55,30 +55,30 @@ void	analysis_tile(t_tile *tile, t_info **info_p)
 	}
 }
 
-t_tile	**init_tile_array(t_info *info)
+t_tile	**init_tile_array(t_info **info)
 {
 	t_tile	**tile_arr;
 	char	**map;
 	int		x;
 	int		y;	
 
-	tile_arr = malloc_tile_array(info);
+	tile_arr = malloc_tile_array(*info);
 	y = 0;
-	map = info->map;
-	while (y <= info->map_height)
+	map = (*info)->map;
+	while (y < (*info)->map_height)
 	{
 		x = 0;
-		while (x < info->map_width)
+		while (x < (*info)->map_width)
 		{
 			tile_arr[y][x].symbol = map[y][x];
-			set_neighbours(tile_arr, x, y, *info);
-			analysis_tile(&tile_arr[y][x], &info);
+			set_neighbours(tile_arr, x, y, **info);
+			analysis_tile(&tile_arr[y][x], info);
 			x++;
 		}
 		y++;
 	}
 	tile_arr[y] = NULL;
-	info->window_height = y * IMG_SIZE;
-	info->window_width = x * IMG_SIZE;
+	(*info)->window_height = y * 64;
+	(*info)->window_width = x * 64;
 	return (tile_arr);
 }

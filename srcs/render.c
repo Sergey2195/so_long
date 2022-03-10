@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:22:29 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/09 19:55:36 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:19:55 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	render(t_info **info_p)
 	tilemap = info->tile_array;
 	mlx_clear_window(info->mlx_p, info->window_p);
 	y = 0;
-	while (y <= info->map_height)
+	while (y < info->map_height)
 	{
 		x = 0;
 		while (x < info->map_width)

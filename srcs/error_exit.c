@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:47:57 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/09 19:21:03 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:03:21 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,12 @@ void	free_map(char	**map, t_info *info)
 	int	i;
 
 	i = 0;
-	while (i <= info->map_height)
+	while (i < info->map_height)
 	{
 		free(map[i]);
 		i++;
 	}
 	free(map);
-}
-
-void	not_rect(t_info *info, int i, char	***map_ptr)
-{
-	char	**map;
-	
-	ft_putstr_fd("Error\nThe map must be a rectangle\n", 1);
-	map = *map_ptr;
-	while (i >= 0)
-	{
-		free(map[i]);
-		i--;
-	}
-	free(map);
-	free(info);
-	exit(EXIT_FAILURE);
 }
 
 void	error_exit(char *str, t_info *info)
@@ -59,7 +43,7 @@ void	success(t_info **info)
 
 	i = 0;
 	free_map((*info)->map, *info);
-	while (i <= (*info)->map_height)
+	while (i < (*info)->map_height)
 	{
 		free((*info)->tile_array[i]);
 		i++;
@@ -67,4 +51,19 @@ void	success(t_info **info)
 	free((*info)->tile_array);
 	free(*info);
 	exit(EXIT_SUCCESS);
+}
+
+void	error_signal(t_info *info, int i)
+{
+	ft_putstr_fd("Error\n", 1);
+	if (i == 1)
+		ft_putstr_fd("Fd map error\n", 1);
+	if (i == 2)
+		ft_putstr_fd("Map extension must be .ber\n", 1);
+	if (i == 3)
+		ft_putstr_fd("No map\n", 1);
+	if (i == 4)
+		ft_putstr_fd("Too many args\n", 1);
+	free(info);
+	exit(EXIT_FAILURE);
 }

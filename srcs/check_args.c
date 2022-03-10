@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:32:09 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/09 17:36:12 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:36:21 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	check_extension(char *str, t_info *info)
 	while (str[i])
 		i++;
 	if (i <= 4)
-		error_exit("Map extension must be .ber\n", info);
+		error_signal(info, 2);
 	if (!ft_strnstr(str + (ft_strlen(str) - 4), ".ber", 4))
-		error_exit("Map extension must be .ber\n", info);
+		error_signal(info, 2);
 }
 
 void	check_args_init_map(int argc, char **argv, t_info **info)
@@ -33,11 +33,11 @@ void	check_args_init_map(int argc, char **argv, t_info **info)
 
 	i = 0;
 	if (argc < 2)
-		error_exit("No map", *info);
+		error_signal(*info, 3);
 	if (argc > 2)
-		error_exit("Too many arguments", *info);
+		error_signal(*info, 4);
 	check_extension(argv[1], *info);
-	map_init(*info, argv[1]);
+	map_init(info, argv[1]);
 	(*info)->count_collect = 0;
 	(*info)->steps = 0;
 }

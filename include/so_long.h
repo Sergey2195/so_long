@@ -6,7 +6,7 @@
 /*   By: iannmari <iannmari@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 15:14:40 by iannmari          #+#    #+#             */
-/*   Updated: 2022/03/09 18:28:03 by iannmari         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:30:20 by iannmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ typedef struct s_info
 
 void	error_exit(char *str, t_info *info);
 void	check_args_init_map(int argc, char **argv, t_info **info);
-void	map_init(t_info *info, char *arg);
+void	map_init(t_info **info, char *arg);
 void	check_map(t_info **info_p);
-t_tile	**init_tile_array(t_info *info);
+t_tile	**init_tile_array(t_info **info);
 int		finish(t_info *info);
 int		button_press(int button, t_info **info);
 void	get_ptr_images(t_info **info);
 int		update(t_info *info);
 void	render(t_info **info);
 void	success(t_info **info);
-void	not_rect(t_info *info, int i, char	***map_ptr);
+void	error_signal(t_info *info, int i);
 #endif
